@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Message</title>
+    <style>
+        body {
+            background-color: blue;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .message-container {
+            display: none;
+        }
+        .message-container.active {
+            display: block;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: white;
+            color: blue;
+            border: none;
+            border-radius: 5px;
+        }
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="message1" class="message-container active">
+        <p>No matter what happens</p>
+        <button onclick="showNextMessage('message2')">Next</button>
+    </div>
+
+    <div id="message2" class="message-container">
+        <p>Ariana is always here to love her girl, Chica, infinitively 💓💘</p>
+        <button onclick="showNextMessage('message3')">Next</button>
+    </div>
+
+    <div id="message3" class="message-container">
+        <p>Happy Valentine to my Valentine 💓</p>
+        <audio id="valentine-song" controls autoplay>
+            <source src="https://www.example.com/path-to-highway-song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script>
+        function showNextMessage(nextMessageId) {
+            const currentMessage = document.querySelector('.message-container.active');
+            const nextMessage = document.getElementById(nextMessageId);
+
+            if (currentMessage) {
+                currentMessage.classList.remove('active');
+            }
+            if (nextMessage) {
+                nextMessage.classList.add('active');
+            }
+
+            // اگر به پیام سوم رسیدیم، آهنگ را پخش کن
+            if (nextMessageId === 'message3') {
+                const audio = document.getElementById('valentine-song');
+                audio.play();
+            }
+        }
+    </script>
+
+</body>
+</html>
